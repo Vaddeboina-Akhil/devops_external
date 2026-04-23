@@ -1,0 +1,318 @@
+================================================================================
+✅ SET 1: HTML FORM & DOCKER BASICS
+================================================================================
+
+🔹 TASK A: HTML Form + Git Source Control
+──────────────────────────────────────────
+
+💻 STEP 1: Create HTML File (index.html)
+─────────────────────────────────────────
+<!DOCTYPE html>
+<html>
+<body>
+<form onsubmit="alert('Registered Successfully'); return false;">
+<h3>Event Registration</h3>
+<input type="text" placeholder="Name" required><br>
+<input type="email" placeholder="Email" required><br>
+<button>Register</button>
+</form>
+</body>
+</html>
+
+▶️ STEP 2: Test Form in Browser
+───────────────────────────────
+- Open in browser
+- Fill form
+- Click Register
+- Verify success alert ✅
+
+🧑‍💻 STEP 3: Initialize Git Repository
+──────────────────────────────────────────
+git init
+git add .
+git commit -m "first commit"
+
+🔗 STEP 4: Push to GitHub
+──────────────────────────
+- Create repository on GitHub
+- Copy URL
+git remote add origin https://github.com/username/repo.git
+git branch -M main
+git push -u origin main
+
+🧠 KEY FLOW: init → add → commit → push
+
+
+🔹 TASK B: Docker & Container Management
+──────────────────────────────────────────
+
+📄 STEP 1: Create Dockerfile
+───────────────────────────────
+FROM nginx
+COPY . /usr/share/nginx/html
+
+💻 STEP 2: Build & Run Container
+──────────────────────────────────
+docker build -t myapp .
+docker run -d -p 8080:80 myapp
+
+🌐 STEP 3: Access Application
+──────────────────────────────
+Open browser: http://localhost:8080
+
+🔄 STEP 4: Container Management Commands
+──────────────────────────────────────────
+docker ps                 # List containers
+docker stop <id>          # Stop container
+docker start <id>         # Start container
+docker rm <id>            # Remove container
+
+🧠 KEY FLOW: build → run → access → manage
+
+================================================================================
+✅ SET 2: GIT BRANCHING & KUBERNETES BASICS
+================================================================================
+
+🔹 TASK A: Git Branching & Merge Strategy
+──────────────────────────────────────────
+
+💻 STEP 1: Initialize Repository & Push Code
+─────────────────────────────────────────────
+git init
+git add .
+git commit -m "first commit"
+git remote add origin https://github.com/username/repo.git
+git branch -M main
+git push -u origin main
+
+🌿 STEP 2: Create Feature Branch
+────────────────────────────────
+git branch feature
+git checkout feature
+
+✏️ STEP 3: Make Changes & Commit
+─────────────────────────────────
+git add .
+git commit -m "update"
+
+🔀 STEP 4: Merge Back to Main
+──────────────────────────────
+git checkout main
+git merge feature
+git push origin main
+
+🧠 KEY FLOW: branch → change → merge → push
+
+
+🔹 TASK B: Kubernetes Pod Deployment
+──────────────────────────────────────
+
+⚠️ STEP 0: Start Kubernetes Cluster
+────────────────────────────────────
+minikube start
+
+🔍 VERIFY: Check cluster status
+────────────────────────────────
+kubectl get nodes
+
+📄 STEP 1: Create Pod Configuration (pod.yaml)
+───────────────────────────────────────────────
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp-pod
+spec:
+  containers:
+  - name: mycontainer
+    image: nginx
+    ports:
+    - containerPort: 80
+
+▶️ STEP 2: Deploy Pod to Cluster
+─────────────────────────────────
+kubectl apply -f pod.yaml
+
+📊 STEP 3: Verify Pod Deployment
+────────────────────────────────
+kubectl get pods
+kubectl describe pod myapp-pod
+
+🧪 STEP 4: View Pod Logs
+─────────────────────────
+kubectl logs myapp-pod
+
+❌ STEP 5: Clean Up - Delete Pod
+────────────────────────────────
+kubectl delete pod myapp-pod
+
+🧠 KEY FLOW: start → create → deploy → verify → monitor → delete
+
+================================================================================
+✅ SET 3: JENKINS CI & SELENIUM TESTING
+================================================================================
+
+🔹 TASK A: Jenkins Continuous Integration Setup
+────────────────────────────────────────────────
+
+🔽 STEP 1: Open Jenkins Dashboard
+──────────────────────────────────
+Open browser: http://localhost:8080
+
+🔐 STEP 2: Unlock Jenkins & Install Plugins
+─────────────────────────────────────────────
+- Enter unlock password
+- Install recommended plugins
+- Create first admin user
+
+📁 STEP 3: Create New Freestyle Job
+────────────────────────────────────
+- Click: New Item
+- Select: Freestyle Project
+- Click: OK
+
+🔗 STEP 4: Configure GitHub Repository Connection
+──────────────────────────────────────────────────
+Section: Source Code Management
+- Select: Git
+- Paste repository URL from GitHub
+- Branch: */main
+
+⚙️ STEP 5: Add Build Step (IMPORTANT)
+──────────────────────────────────────
+- Click: Add build step
+- Select: Execute shell
+- Enter command:
+  echo "Build Successful"
+
+▶️ STEP 6: Trigger Build
+──────────────────────────
+- Click: Build Now
+- Check Console Output
+- Verify Success ✅
+
+🧠 KEY FLOW: setup → config → connect → build → verify
+
+
+🔹 TASK B: Selenium JavaScript Automation Testing
+─────────────────────────────────────────────────
+
+📦 STEP 1: Install Selenium WebDriver
+──────────────────────────────────────
+npm init -y
+npm install selenium-webdriver
+
+💻 STEP 2: Write Selenium Test Script (test.js)
+───────────────────────────────────────────────
+const {Builder, By} = require('selenium-webdriver');
+
+(async function(){
+let driver = await new Builder().forBrowser('chrome').build();
+
+await driver.get('https://www.google.com');
+
+let title = await driver.getTitle();
+console.log(title);
+
+await driver.quit();
+})();
+
+▶️ STEP 3: Execute Test Script
+──────────────────────────────
+node test.js
+
+📊 STEP 4: Verify Output
+────────────────────────
+- Browser opens
+- Page title printed to console
+- Browser closes automatically
+
+🧠 KEY FLOW: open → navigate → verify → close
+
+================================================================================
+✅ SET 4: JENKINS CD & SELENIUM FORM TESTING
+================================================================================
+
+🔹 TASK A: Jenkins Continuous Deployment Pipeline
+──────────────────────────────────────────────────
+
+📁 STEP 1: Create New Pipeline Job
+──────────────────────────────────
+- Click: New Item
+- Select: Pipeline
+- Click: OK
+
+🔗 STEP 2: Configure GitHub Repository Connection
+──────────────────────────────────────────────────
+Section: Pipeline
+- Definition: Pipeline script from SCM
+- SCM: Git
+- Repository URL: (paste your GitHub repo URL)
+- Branch: */main
+
+⚠️ STEP 3: Specify Jenkinsfile Location (IMPORTANT)
+────────────────────────────────────────────────────
+If Jenkinsfile is in set4 folder:
+- Script Path: set4/Jenkinsfile
+
+⏰ STEP 4: Enable Automatic Triggering
+───────────────────────────────────────
+- Check: Poll SCM
+- Schedule: * * * * *
+
+▶️ STEP 5: Trigger Pipeline Build
+──────────────────────────────────
+- Push changes to GitHub
+- Jenkins automatically detects changes
+- Pipeline builds automatically ✅
+
+📊 STEP 6: Monitor Pipeline Execution
+──────────────────────────────────────
+- View console output
+- Check build status
+- Verify deployment success
+
+🧠 KEY FLOW: detect change → auto build → auto deploy (CD)
+
+
+🔹 TASK B: Selenium Automated Form Testing
+──────────────────────────────────────────
+
+💻 STEP 1: Write Selenium Test Script (test.js)
+───────────────────────────────────────────────
+const {Builder, By} = require('selenium-webdriver');
+
+(async function(){
+let driver = await new Builder().forBrowser('chrome').build();
+
+// Open local form
+await driver.get('file:///C:/path/index.html');
+
+// Locate and fill Name input
+await driver.findElement(By.xpath('//input[@placeholder="Name"]')).sendKeys('Akhil');
+
+// Locate and fill Email input
+await driver.findElement(By.xpath('//input[@placeholder="Email"]')).sendKeys('test@gmail.com');
+
+// Locate and click Submit button
+await driver.findElement(By.tagName('button')).click();
+
+await driver.quit();
+})();
+
+▶️ STEP 2: Execute Test Script
+──────────────────────────────
+node test.js
+
+📊 STEP 3: Verify Test Results
+───────────────────────────────
+- Browser opens
+- Form loads
+- Name field filled: "Akhil"
+- Email field filled: "test@gmail.com"
+- Submit button clicked
+- Success alert displayed ✅
+- Browser closes automatically
+
+🧠 KEY FLOW: open → locate → fill → click → verify → close
+
+================================================================================
